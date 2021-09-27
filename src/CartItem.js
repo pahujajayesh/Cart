@@ -1,32 +1,51 @@
 import React from "react";
 class CartItem extends React.Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            title:'Mobile Phone',
-            price:999,
-            qty:1,
-            img:''
+        this.state = {
+            title: 'Mobile Phone',
+            price: 999,
+            qty: 1,
+            img: ''
         }
+        // this.increaseQuantity=this.increaseQuantity.bind(this);
+    }
+    increaseQuantity =()=>{
+        console.log("this",this.state);
+    
     }
     render() {
-        const{title,price,qty}=this.state
+        const { title, price, qty } = this.state
         return (
-            <div className="cary-item">
-                <div className="left-block">
-                    <img alt="" style={styles.image} />
-                </div>
-                <div className="right-block">
-                    <div style={{ fontSize: 35, color: 'red' }}>{title}</div>
-                    <div style={{ color: 'blue' }}>Price:Rs{price}</div>
-                    <div style={{ color: 'darkgray' }}>Qty:{qty}</div>
-                    <div className="action-icons">
-                        <img alt="minus"className="action-icons" src="https://cdn-icons-png.flaticon.com/512/992/992683.png"></img>
-                        <img alt="plus"className="action-icons" src="https://cdn-icons-png.flaticon.com/512/992/992651.png"></img>
-                        <img alt="delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"></img>
-                    </div>
-                </div>
+          <div className="cart-item">
+            <div className="left-block">
+              <img alt="" style={styles.image} />
             </div>
+            <div className="right-block">
+              <div style={{ fontSize: 35, color: "red" }}>{title}</div>
+              <div style={{ color: "blue" }}>Price:Rs{price}</div>
+              <div style={{ color: "darkgray" }}>Qty:{qty}</div>
+              <div className="action-icons">
+                <img
+                  alt="minus"
+                  className="action-icons"
+                  src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                  
+                ></img>
+                <img
+                  alt="plus"
+                  className="action-icons"
+                  src="https://cdn-icons-png.flaticon.com/512/992/992651.png"
+                  onClick={this.increaseQuantity}
+                ></img>
+                <img
+                  alt="delete"
+                  className="action-icons"
+                  src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
+                ></img>
+              </div>
+            </div>
+          </div>
         );
     }
 }
