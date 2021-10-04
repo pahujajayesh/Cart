@@ -1,55 +1,70 @@
 import React from "react";
 import CartItem from './CartItem';
 class Cart extends React.Component {
-    
-        constructor() {
-            super();
-            this.state = {
-                products:[
-                {
-                    title: 'Mobile Phone',
-                    price: 999,
-                    qty: 1,
-                    img: '',
-                    id:1
-                },
-                {
-                    title: 'Laptop',
-                    price: 9599,
-                    qty: 10,
-                    img: '',
-                    id:2
-                    
-                },{
-                    title: 'Watch',
-                    price: 1999,
-                    qty: 5,
-                    img: '',
-                    id:3
-                }
-            ]
+    constructor(){
+    super();
+    this.state={
+        products:[
+            {
+                price:1999,
+                title:"Laptop",
+                qty:10,
+                img:'',
+                id:1
+            },{
+                price:199,
+                title:"Watch",
+                qty:1,
+                img:'',
+                id:2
 
-                
+            },{
+                price:199999,
+                title:"I phone",
+                qty:1,
+                img:'',
+                id:3
             }
+        ]
+      }
+    }
+    handelIncreaseQuantity=(product)=>{
+        console.log('hey increase wty of',product);
+        const {products}=this.state;
+        const index=products.indexOf(product);
+        products[index].qty+=1;
+        this.setState({
+            products:products
+        })
+    }
+
+    handelDecreaseQuantity=(product)=>{
+        const{products}=this.state;
+        const index=products.indexOf(product);
+        if(products[index].qty === 0){
+            return;
         }
-        render(){
-            const{products}=this.state;
-        return (
-         
+        products[index].qty-=1;
+        this.setState({
+            products
+        })
+    }
+    render(){
+        const {products}=this.state;
+        return(
             <div className="cart">
-                
-                {products.map((product) => {
-                    return( 
-                    <CartItem 
-                    product={product} 
-                    key={product.id}
-                    />
-                    )
-                })}
+            {products.map((product)=>{
+                return <CartItem 
+                product={product} 
+                key={product.id}
+                increaseQuantity={this.handelIncreaseQuantity}
+                decreaseQuantity={this.handelDecreaseQuantity}
+                />
+            })}
             </div>
         )
-
     }
+    
 }
 
 export default Cart;
