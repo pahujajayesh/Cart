@@ -8,21 +8,21 @@ class App extends React.Component {
     this.state = {
       products: [
         {
-          price: 1999,
+          price: 50000,
           title: "Laptop",
           qty: 10,
           img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
           id: 1,
         },
         {
-          price: 199,
+          price: 1999,
           title: "Watch",
           qty: 1,
           img: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
           id: 2,
         },
         {
-          price: 199999,
+          price: 15999,
           title: "Mobile Phone",
           qty: 1,
           img:"https://images.unsplash.com/photo-1580910051074-3eb694886505?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=465&q=80",
@@ -66,7 +66,15 @@ class App extends React.Component {
       count += product.qty;
     });
     return count;
-  };
+  }
+  getToatalCost=()=>{
+    const{products}=this.state;
+    let totalPrice=0;
+    products.forEach((product)=>{
+      totalPrice+=product.qty*product.price;
+    })
+    return totalPrice;
+  }
 
   render() {
     const { products } = this.state;
@@ -79,6 +87,7 @@ class App extends React.Component {
           decreaseQuantity={this.handelDecreaseQuantity}
           deleteProduct={this.handelDeleteProduct}
         />
+        <div style={{fontSize:20,padding:10,textTransform:"uppercase"}}>Total Price={this.getToatalCost()}</div>
       </div>
     );
   }
