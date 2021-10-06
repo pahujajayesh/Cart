@@ -11,22 +11,22 @@ class App extends React.Component {
           price: 1999,
           title: "Laptop",
           qty: 10,
-          img: "",
+          img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
           id: 1,
         },
         {
           price: 199,
           title: "Watch",
           qty: 1,
-          img: "",
+          img: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
           id: 2,
         },
         {
           price: 199999,
-          title: "I phone",
+          title: "Mobile Phone",
           qty: 1,
-          img: "",
-          id: 3,
+          img:"https://images.unsplash.com/photo-1580910051074-3eb694886505?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=465&q=80",
+          id: 3
         },
       ],
     };
@@ -59,28 +59,25 @@ class App extends React.Component {
       products: items,
     });
   };
-  getCartitemsCount=()=>{
-    const {products}=this.state;
-    let count=0;
-    products.forEach((product)=> {
-      count+=product.qty;
-    })
+  getCartitemsCount = () => {
+    const { products } = this.state;
+    let count = 0;
+    products.forEach((product) => {
+      count += product.qty;
+    });
     return count;
-
-  }
+  };
 
   render() {
-    const{products}=this.state
+    const { products } = this.state;
     return (
       <div className="App">
-        <Navbar
-        count={this.getCartitemsCount()}
-         />
-        <Cart 
+        <Navbar count={this.getCartitemsCount()} />
+        <Cart
           products={products}
-           increaseQuantity={this.handelIncreaseQuantity}
-           decreaseQuantity={this.handelDecreaseQuantity}
-           deleteProduct={this.handelDeleteProduct}
+          increaseQuantity={this.handelIncreaseQuantity}
+          decreaseQuantity={this.handelDecreaseQuantity}
+          deleteProduct={this.handelDeleteProduct}
         />
       </div>
     );
